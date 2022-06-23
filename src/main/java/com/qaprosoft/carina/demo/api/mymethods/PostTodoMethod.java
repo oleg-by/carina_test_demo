@@ -9,13 +9,13 @@ import com.qaprosoft.carina.core.foundation.api.http.HttpMethodType;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-@Endpoint(url = "${base_url}/posts/2", methodType = HttpMethodType.PUT)
-@RequestTemplatePath(path = "api/users/_put/rq.json")
-@ResponseTemplatePath(path = "api/users/_put/rs.json")
-@SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
-public class PutPostMethod extends AbstractApiMethodV2 {
-    public PutPostMethod() {
-        super("api/posts/_put/rq.json", "api/posts/_put/rs.json", "api/posts/post.properties");
+@Endpoint(url = "${base_url}/todos", methodType = HttpMethodType.POST)
+@RequestTemplatePath(path = "api/todos/_post/rq.json")
+@ResponseTemplatePath(path = "api/todos/_post/rs.json")
+@SuccessfulHttpStatus(status = HttpResponseStatusType.CREATED_201)
+public class PostTodoMethod extends AbstractApiMethodV2 {
+    public PostTodoMethod() {
+        super("api/todos/_post/rq.json", "api/todos/_post/rs.json", "api/todos/todo.properties");
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
     }
 }
