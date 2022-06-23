@@ -1,0 +1,6 @@
+{
+  <#if userId??>"userId": ${userId}, </#if>
+"title": "${title}",
+"body": "${body}",
+"id": 101
+}
