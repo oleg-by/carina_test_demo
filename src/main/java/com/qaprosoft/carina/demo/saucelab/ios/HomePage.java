@@ -1,30 +1,33 @@
-package com.qaprosoft.carina.demo.saucelab.android;
+package com.qaprosoft.carina.demo.saucelab.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractProductPage;
 import com.qaprosoft.carina.demo.saucelab.common.AbstractViewMenu;
 import com.qaprosoft.carina.demo.saucelab.common.AbstractHomePage;
+import com.qaprosoft.carina.demo.saucelab.common.AbstractProductPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AbstractHomePage.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = AbstractHomePage.class)
 public class HomePage extends AbstractHomePage implements IMobileUtils {
 
-    @ExtendedFindBy(accessibilityId = "App logo and name")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeImage[`name == \"AppTitle Icons\"`]")
     private ExtendedWebElement logo;
-    @ExtendedFindBy(accessibilityId = "View menu")
-    private ExtendedWebElement viewMenuBtn;
 
-    @ExtendedFindBy(accessibilityId = "Shows current sorting order and displays available sorting options")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`label == \"Button\"`]")
     private ExtendedWebElement sortBtn;
 
-    @ExtendedFindBy(accessibilityId = "View cart")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Catalog-tab-item\"`]")
+    private ExtendedWebElement catalogBtn;
+
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Cart-tab-item\"`]")
     private ExtendedWebElement cartBtn;
 
-    @FindBy(xpath = "//android.widget.ImageView[@resource-id = \"com.saucelabs.mydemoapp.android:id/productIV\" and contains(@content-desc, \"%s\")]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"More-tab-item\"`]")
+    private ExtendedWebElement viewMenuBtn;
+
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name CONTAINS[cd] \"%s\"`]")
     private ExtendedWebElement someGoodImage;
 
     public HomePage(WebDriver driver) {

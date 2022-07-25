@@ -1,21 +1,22 @@
-package com.qaprosoft.carina.demo.saucelab.android;
+package com.qaprosoft.carina.demo.saucelab.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractProductPage;
 import com.qaprosoft.carina.demo.saucelab.common.AbstractViewMenu;
+import com.qaprosoft.carina.demo.saucelab.common.AbstractProductPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AbstractProductPage.class)
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = AbstractProductPage.class)
 public class ProductPage extends AbstractProductPage {
 
-    @FindBy(xpath = "//android.widget.TextView[@resource-id = \"com.saucelabs.mydemoapp.android:id/productTV\" and contains(@text, \"%s\")]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name CONTAINS[cd] \"%s\"`]")
     private ExtendedWebElement goodTitle;
 
-    @ExtendedFindBy(accessibilityId = "View menu")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"Catalog-tab-item\"`]")
+    private ExtendedWebElement catalogBtn;
+
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"More-tab-item\"`]")
     private ExtendedWebElement viewMenuBtn;
 
     public ProductPage(WebDriver driver) {
@@ -35,8 +36,6 @@ public class ProductPage extends AbstractProductPage {
 
     @Override
     public void backHome() {
-        AbstractViewMenu viewMenu = this.viewMenu();
-        Assert.assertTrue(viewMenu.isViewMenuPresent("Catalog"), "View Menu isn't opened");
-        Assert.assertTrue(viewMenu.clickCatalogItem("Catalog").isLogoPresent(), "Home Page isn't opened");
+        catalogBtn.click();
     }
 }
