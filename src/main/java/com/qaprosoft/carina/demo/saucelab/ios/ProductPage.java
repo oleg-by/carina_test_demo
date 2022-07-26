@@ -3,12 +3,12 @@ package com.qaprosoft.carina.demo.saucelab.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractViewMenu;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractProductPage;
+import com.qaprosoft.carina.demo.saucelab.common.ViewMenuBase;
+import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = AbstractProductPage.class)
-public class ProductPage extends AbstractProductPage {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductPageBase.class)
+public class ProductPage extends ProductPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name CONTAINS[cd] \"%s\"`]")
     private ExtendedWebElement goodTitle;
@@ -29,9 +29,9 @@ public class ProductPage extends AbstractProductPage {
     }
 
     @Override
-    public AbstractViewMenu viewMenu() {
+    public ViewMenuBase clickViewMenuBtn() {
         viewMenuBtn.click();
-        return initPage(getDriver(), AbstractViewMenu.class);
+        return initPage(getDriver(), ViewMenuBase.class);
     }
 
     @Override

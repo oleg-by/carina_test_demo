@@ -4,14 +4,14 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractProductPage;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractViewMenu;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractHomePage;
+import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
+import com.qaprosoft.carina.demo.saucelab.common.ViewMenuBase;
+import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AbstractHomePage.class)
-public class HomePage extends AbstractHomePage implements IMobileUtils {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = HomePageBase.class)
+public class HomePage extends HomePageBase implements IMobileUtils {
 
     @ExtendedFindBy(accessibilityId = "App logo and name")
     private ExtendedWebElement logo;
@@ -32,9 +32,9 @@ public class HomePage extends AbstractHomePage implements IMobileUtils {
     }
 
     @Override
-    public AbstractViewMenu viewMenu() {
+    public ViewMenuBase clickViewMenuBtn() {
         viewMenuBtn.click();
-        return initPage(getDriver(), AbstractViewMenu.class);
+        return initPage(getDriver(), ViewMenuBase.class);
     }
 
     @Override
@@ -43,10 +43,10 @@ public class HomePage extends AbstractHomePage implements IMobileUtils {
     }
 
     @Override
-    public AbstractProductPage clickGoodImage(String title) {
+    public ProductPageBase clickGood(String title) {
         if (swipe(someGoodImage.format(title), 10)) {
             someGoodImage.format(title).click();
         }
-        return initPage(getDriver(), AbstractProductPage.class);
+        return initPage(getDriver(), ProductPageBase.class);
     }
 }

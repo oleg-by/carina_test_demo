@@ -4,16 +4,16 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractViewMenu;
-import com.qaprosoft.carina.demo.saucelab.common.AbstractHomePage;
+import com.qaprosoft.carina.demo.saucelab.common.ViewMenuBase;
+import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = AbstractViewMenu.class)
-public class ViewMenu extends AbstractViewMenu implements IMobileUtils {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ViewMenuBase.class)
+public class ViewMenu extends ViewMenuBase implements IMobileUtils {
 
     @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/itemTV\" and contains(@text,\"%s\")]")
-    private ExtendedWebElement itemTV;
+    private ExtendedWebElement menuItemBtn;
 
     public ViewMenu(WebDriver driver) {
         super(driver);
@@ -21,25 +21,25 @@ public class ViewMenu extends AbstractViewMenu implements IMobileUtils {
 
     @Override
     public boolean isViewMenuPresent(String item) {
-        return itemTV.format(item).isElementPresent();
+        return menuItemBtn.format(item).isElementPresent();
     }
 
     @Override
-    public AbstractPage clickItem(String item) {
+    public AbstractPage clickMenuItem(String item) {
         return null;
     }
 
     @Override
-    public AbstractHomePage clickCatalogItem(String item) {
-        itemTV.format(item).click();
-        return initPage(getDriver(), AbstractHomePage.class);
+    public HomePageBase clickCatalogItem(String item) {
+        menuItemBtn.format(item).click();
+        return initPage(getDriver(), HomePageBase.class);
     }
 
     @Override
-    public AbstractHomePage closeViewMenu() {
+    public HomePageBase closeMenu() {
         int height = getDriver().manage().window().getSize().getHeight();
         int width = getDriver().manage().window().getSize().getWidth();
         tap(width - 100, height / 2);
-        return initPage(getDriver(), AbstractHomePage.class);
+        return initPage(getDriver(), HomePageBase.class);
     }
 }
