@@ -5,7 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
-import com.qaprosoft.carina.demo.saucelab.common.ViewMenuBase;
+import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
 import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -32,9 +32,9 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     }
 
     @Override
-    public ViewMenuBase clickViewMenuBtn() {
+    public MainMenuBase clickViewMenuBtn() {
         viewMenuBtn.click();
-        return initPage(getDriver(), ViewMenuBase.class);
+        return initPage(getDriver(), MainMenuBase.class);
     }
 
     @Override

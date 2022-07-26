@@ -3,7 +3,7 @@ package com.qaprosoft.carina.demo.saucelab.ios;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.ViewMenuBase;
+import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
 import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
 import org.openqa.selenium.WebDriver;
 
@@ -29,9 +29,9 @@ public class ProductPage extends ProductPageBase {
     }
 
     @Override
-    public ViewMenuBase clickViewMenuBtn() {
+    public MainMenuBase clickViewMenuBtn() {
         viewMenuBtn.click();
-        return initPage(getDriver(), ViewMenuBase.class);
+        return initPage(getDriver(), MainMenuBase.class);
     }
 
     @Override

@@ -8,7 +8,7 @@ public abstract class HomePageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract ViewMenuBase clickViewMenuBtn();
+    public abstract MainMenuBase clickViewMenuBtn();
 
     public abstract boolean isLogoPresent();
 
