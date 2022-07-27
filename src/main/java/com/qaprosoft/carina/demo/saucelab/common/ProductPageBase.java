@@ -11,7 +11,9 @@ public abstract class ProductPageBase extends AbstractPage {
 
     public abstract boolean isTitleOpened(String title);
 
-    public abstract MainMenuBase clickViewMenuBtn();
+    public abstract boolean scrollPageDown();
+
+    public abstract MainMenuBase clickMenuBtn();
 
     public abstract void backHome();
 

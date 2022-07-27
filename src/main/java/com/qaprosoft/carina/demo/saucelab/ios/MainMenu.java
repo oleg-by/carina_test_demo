@@ -4,10 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.DrawingPageBase;
-import com.qaprosoft.carina.demo.saucelab.common.LogInPageBase;
-import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
-import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
+import com.qaprosoft.carina.demo.saucelab.common.*;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = MainMenuBase.class)
@@ -25,19 +22,19 @@ public class MainMenu extends MainMenuBase implements IMobileUtils {
     }
 
     @Override
-    public boolean isViewMenuPresent(String item) {
-        return menuItemBtn.format(item).isElementPresent();
+    public boolean isViewMenuPresent(MenuItem item) {
+        return menuItemBtn.format(item.getMenu()).isElementPresent();
     }
 
     @Override
-    public DrawingPageBase clickDrawingItem(String item) {
-        menuItemBtn.format(item).click();
+    public DrawingPageBase clickDrawingItem(MenuItem item) {
+        menuItemBtn.format(item.getMenu()).click();
         return initPage(getDriver(), DrawingPageBase.class);
     }
 
     @Override
-    public LogInPageBase clickLogInItem(String item) {
-        menuItemBtn.format(item).click();
+    public LogInPageBase clickLogInItem(MenuItem item) {
+        menuItemBtn.format(item.getMenu()).click();
         return initPage(getDriver(), LogInPageBase.class);
     }
 
@@ -48,7 +45,7 @@ public class MainMenu extends MainMenuBase implements IMobileUtils {
     }
 
     @Override
-    public HomePageBase clickCatalogItem(String catalog) {
+    public HomePageBase clickCatalogItem(MenuItem item) {
         return null;
     }
 }

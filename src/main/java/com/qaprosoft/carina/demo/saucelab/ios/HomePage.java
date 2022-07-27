@@ -4,9 +4,10 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
 import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
+import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
 import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
+import com.qaprosoft.carina.demo.saucelab.common.SortByPopUpPageBase;
 import org.openqa.selenium.WebDriver;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = HomePageBase.class)
@@ -30,14 +31,28 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name CONTAINS \"%s\"`]")
     private ExtendedWebElement someGoodTitle;
 
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label CONTAINS \" \"`][4]")
+    private ExtendedWebElement firstSortedGood;
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public MainMenuBase clickViewMenuBtn() {
+    public MainMenuBase clickMenuBtn() {
         mainMenuBtn.click();
         return initPage(getDriver(), MainMenuBase.class);
+    }
+
+    @Override
+    public SortByPopUpPageBase clickSortBtn() {
+        sortBtn.click();
+        return initPage(getDriver(), SortByPopUpPageBase.class);
+    }
+
+    @Override
+    public boolean compareResultOfSort(String title) {
+        return title.equals(firstSortedGood.getAttribute("label"));
     }
 
     @Override

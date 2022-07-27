@@ -8,13 +8,13 @@ public abstract class MainMenuBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract boolean isViewMenuPresent(String item);
+    public abstract boolean isViewMenuPresent(MenuItem item);
 
-    public abstract HomePageBase clickCatalogItem(String catalog);
+    public abstract HomePageBase clickCatalogItem(MenuItem item);
 
-    public abstract DrawingPageBase clickDrawingItem(String item);
+    public abstract DrawingPageBase clickDrawingItem(MenuItem item);
 
-    public abstract LogInPageBase clickLogInItem(String item);
+    public abstract LogInPageBase clickLogInItem(MenuItem item);
 
     public abstract HomePageBase closeMenu();
 }

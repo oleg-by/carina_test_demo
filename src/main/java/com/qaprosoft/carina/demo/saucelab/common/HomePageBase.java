@@ -8,7 +8,11 @@ public abstract class HomePageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract MainMenuBase clickViewMenuBtn();
+    public abstract MainMenuBase clickMenuBtn();
+
+    public abstract SortByPopUpPageBase clickSortBtn();
+
+    public abstract boolean compareResultOfSort(String title);
 
     public abstract boolean isLogoPresent();
 

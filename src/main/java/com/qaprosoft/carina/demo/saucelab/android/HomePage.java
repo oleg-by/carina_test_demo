@@ -7,6 +7,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
 import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
 import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
+import com.qaprosoft.carina.demo.saucelab.common.SortByPopUpPageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,24 +18,34 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     private ExtendedWebElement logo;
     @ExtendedFindBy(accessibilityId = "View menu")
     private ExtendedWebElement viewMenuBtn;
-
     @ExtendedFindBy(accessibilityId = "Shows current sorting order and displays available sorting options")
     private ExtendedWebElement sortBtn;
-
     @ExtendedFindBy(accessibilityId = "View cart")
     private ExtendedWebElement cartBtn;
-
     @FindBy(xpath = "//android.widget.ImageView[@resource-id = \"com.saucelabs.mydemoapp.android:id/productIV\" and contains(@content-desc, \"%s\")]")
     private ExtendedWebElement someGoodImage;
+    @FindBy(xpath = "(//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/titleTV\"])[1]")
+    private ExtendedWebElement firstSortedGood;
 
     public HomePage(WebDriver driver) {
         super(driver);
     }
 
     @Override
-    public MainMenuBase clickViewMenuBtn() {
+    public MainMenuBase clickMenuBtn() {
         viewMenuBtn.click();
         return initPage(getDriver(), MainMenuBase.class);
+    }
+
+    @Override
+    public SortByPopUpPageBase clickSortBtn() {
+        sortBtn.click();
+        return initPage(getDriver(), SortByPopUpPageBase.class);
+    }
+
+    @Override
+    public boolean compareResultOfSort(String title) {
+        return title.equals(firstSortedGood.getText());
     }
 
     @Override
