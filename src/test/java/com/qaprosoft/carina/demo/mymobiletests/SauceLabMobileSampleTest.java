@@ -6,7 +6,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.demo.saucelab.common.DrawingPageBase;
 import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
 import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
-import com.qaprosoft.carina.demo.saucelab.common.MenuItem;
+import com.qaprosoft.carina.demo.enums.MenuItem;
 import com.zebrunner.agent.core.annotation.TestLabel;
 import org.testng.Assert;
 import org.testng.annotations.Test;

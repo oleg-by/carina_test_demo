@@ -44,8 +44,8 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     }
 
     @Override
-    public boolean compareResultOfSort(String title) {
-        return title.equals(firstSortedProduct.getText());
+    public String getFirstSortedProduct() {
+        return firstSortedProduct.getText();
     }
 
     @Override

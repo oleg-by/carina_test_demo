@@ -1,9 +1,11 @@
 package com.qaprosoft.carina.demo.saucelab.ios;
 
+import com.qaprosoft.carina.core.foundation.exception.NotSupportedOperationException;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.enums.MenuItem;
 import com.qaprosoft.carina.demo.saucelab.common.*;
 import org.openqa.selenium.WebDriver;
 
@@ -46,6 +48,6 @@ public class MainMenu extends MainMenuBase implements IMobileUtils {
 
     @Override
     public HomePageBase clickCatalogItem(MenuItem item) {
-        return null;
+        throw new NotSupportedOperationException("Not implemented for iOS.");
     }
 }

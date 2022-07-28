@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
+import com.qaprosoft.carina.demo.enums.SortBy;
 import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
 import com.qaprosoft.carina.demo.saucelab.common.SortByPopUpPageBase;
 import org.openqa.selenium.WebDriver;
@@ -36,19 +37,19 @@ public class SortByPopUpPage extends SortByPopUpPageBase implements IMobileUtils
     }
 
     @Override
-    public HomePageBase clickSortBtn(String sort) {
+    public HomePageBase clickSortingMethodBtn(SortBy sort) {
         switch (sort) {
-            case "nameDesc":
-                tap(nameDescSort);
+            case NAME_DESK:
+                nameDescSort.click();
                 break;
-            case "priceAsc":
-                tap(priceAscSort);
+            case PRICE_ASC:
+                priceAscSort.click();
                 break;
-            case "priceDesc":
-                tap(priceDescSort);
+            case PRICE_DESC:
+                priceDescSort.click();
                 break;
             default:
-                tap(nameAscSort);
+                nameAscSort.click();
         }
         return initPage(getDriver(), HomePageBase.class);
     }

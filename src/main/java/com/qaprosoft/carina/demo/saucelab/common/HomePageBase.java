@@ -12,7 +12,7 @@ public abstract class HomePageBase extends AbstractPage {
 
     public abstract SortByPopUpPageBase clickSortBtn();
 
-    public abstract boolean compareResultOfSort(String title);
+    public abstract String getFirstSortedProduct();
 
     public abstract boolean isLogoPresent();
 

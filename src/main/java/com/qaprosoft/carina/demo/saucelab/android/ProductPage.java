@@ -4,7 +4,8 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
-import com.qaprosoft.carina.demo.saucelab.common.MenuItem;
+import com.qaprosoft.carina.demo.enums.MenuItem;
+import com.qaprosoft.carina.demo.saucelab.common.HomePageBase;
 import com.qaprosoft.carina.demo.saucelab.common.ProductPageBase;
 import com.qaprosoft.carina.demo.saucelab.common.MainMenuBase;
 import org.openqa.selenium.WebDriver;
@@ -47,6 +48,7 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
     public void backHome() {
         MainMenuBase menu = this.clickMenuBtn();
         Assert.assertTrue(menu.isViewMenuPresent(MenuItem.CATALOG), "View Menu isn't opened");
-        Assert.assertTrue(menu.clickCatalogItem(MenuItem.CATALOG).isLogoPresent(), "Home Page isn't opened");
+        HomePageBase homePage = menu.clickCatalogItem(MenuItem.CATALOG);
+        Assert.assertTrue(homePage.isLogoPresent(), "Home Page isn't opened");
     }
 }

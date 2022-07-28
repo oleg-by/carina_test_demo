@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.saucelab.common;
+package com.qaprosoft.carina.demo.enums;
 
 public enum MenuItem {
     CATALOG("Catalog"),

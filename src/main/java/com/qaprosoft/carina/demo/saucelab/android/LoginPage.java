@@ -13,16 +13,12 @@ public class LoginPage extends LogInPageBase implements IMobileUtils {
 
     @FindBy(id = "com.saucelabs.mydemoapp.android:id/loginTV")
     private ExtendedWebElement loginTitle;
-
     @FindBy(xpath = "//android.widget.EditText[@text = \"bod@example.com\"]")
     private ExtendedWebElement textFieldUsername;
-
     @FindBy(xpath = "//android.widget.EditText[@text = \"••••••••\"]")
     private ExtendedWebElement textFieldPassword;
-
     @FindBy(id = "com.saucelabs.mydemoapp.android:id/username1TV")
     private ExtendedWebElement testUsername;
-
     @FindBy(id = "com.saucelabs.mydemoapp.android:id/loginBtn")
     private ExtendedWebElement loginBtn;
 
@@ -32,12 +28,12 @@ public class LoginPage extends LogInPageBase implements IMobileUtils {
 
     @Override
     public void selectProvidedUsername() {
-        tap(testUsername);
+        testUsername.click();
     }
 
     @Override
     public HomePageBase clickLoginBtn() {
-        tap(loginBtn);
+        loginBtn.click();
         return initPage(getDriver(), HomePageBase.class);
     }
 

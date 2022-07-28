@@ -14,7 +14,7 @@ public class LoginPage extends LogInPageBase implements IMobileUtils {
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"Login\"`][1]")
     private ExtendedWebElement loginTitle;
 
-    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"Login\"`][1]")
+    @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeTextField[`value == \"bob@example.com\"`]")
     private ExtendedWebElement textFieldUsername;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeSecureTextField[`value == \"••••••••\"`]")
@@ -32,12 +32,12 @@ public class LoginPage extends LogInPageBase implements IMobileUtils {
 
     @Override
     public void selectProvidedUsername() {
-        tap(testUsername);
+        testUsername.click();
     }
 
     @Override
     public HomePageBase clickLoginBtn() {
-        tap(loginBtn);
+        loginBtn.click();
         return initPage(getDriver(), HomePageBase.class);
     }
 
