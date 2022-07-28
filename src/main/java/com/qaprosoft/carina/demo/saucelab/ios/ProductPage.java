@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 public class ProductPage extends ProductPageBase implements IMobileUtils {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name CONTAINS[cd] \"%s\"`]")
-    private ExtendedWebElement goodTitle;
+    private ExtendedWebElement productTitle;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeTextView")
     private ExtendedWebElement productHighlights;
@@ -29,7 +29,7 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
 
     @Override
     public boolean isTitleOpened(String title) {
-        return goodTitle.format(title).isElementPresent();
+        return productTitle.format(title).isElementPresent();
     }
 
     @Override

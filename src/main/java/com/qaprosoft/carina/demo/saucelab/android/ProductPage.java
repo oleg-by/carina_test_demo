@@ -15,9 +15,9 @@ import org.testng.Assert;
 public class ProductPage extends ProductPageBase implements IMobileUtils {
 
     @FindBy(xpath = "//android.widget.TextView[@resource-id = \"com.saucelabs.mydemoapp.android:id/productTV\" and contains(@text, \"%s\")]")
-    private ExtendedWebElement goodTitle;
+    private ExtendedWebElement productTitle;
 
-    @FindBy(xpath = "")
+    @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/descTV\"]")
     private ExtendedWebElement productHighlights;
 
     @ExtendedFindBy(accessibilityId = "View menu")
@@ -29,7 +29,7 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
 
     @Override
     public boolean isTitleOpened(String title) {
-        return goodTitle.format(title).isElementPresent();
+        return productTitle.format(title).isElementPresent();
     }
 
     @Override
@@ -45,8 +45,8 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
 
     @Override
     public void backHome() {
-        MainMenuBase viewMenu = this.clickMenuBtn();
-        Assert.assertTrue(viewMenu.isViewMenuPresent(MenuItem.CATALOG), "View Menu isn't opened");
-        Assert.assertTrue(viewMenu.clickCatalogItem(MenuItem.CATALOG).isLogoPresent(), "Home Page isn't opened");
+        MainMenuBase menu = this.clickMenuBtn();
+        Assert.assertTrue(menu.isViewMenuPresent(MenuItem.CATALOG), "View Menu isn't opened");
+        Assert.assertTrue(menu.clickCatalogItem(MenuItem.CATALOG).isLogoPresent(), "Home Page isn't opened");
     }
 }

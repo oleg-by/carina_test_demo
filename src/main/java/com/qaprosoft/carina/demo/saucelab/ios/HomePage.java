@@ -26,13 +26,13 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     private ExtendedWebElement cartBtn;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeButton[`name == \"More-tab-item\"`]")
-    private ExtendedWebElement mainMenuBtn;
+    private ExtendedWebElement menuBtn;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`name CONTAINS \"%s\"`]")
-    private ExtendedWebElement someGoodTitle;
+    private ExtendedWebElement someProductTitle;
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label CONTAINS \" \"`][4]")
-    private ExtendedWebElement firstSortedGood;
+    private ExtendedWebElement firstSortedProduct;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -40,7 +40,7 @@ public class HomePage extends HomePageBase implements IMobileUtils {
 
     @Override
     public MainMenuBase clickMenuBtn() {
-        mainMenuBtn.click();
+        menuBtn.click();
         return initPage(getDriver(), MainMenuBase.class);
     }
 
@@ -52,7 +52,7 @@ public class HomePage extends HomePageBase implements IMobileUtils {
 
     @Override
     public boolean compareResultOfSort(String title) {
-        return title.equals(firstSortedGood.getAttribute("label"));
+        return title.equals(firstSortedProduct.getAttribute("label"));
     }
 
     @Override
@@ -62,8 +62,8 @@ public class HomePage extends HomePageBase implements IMobileUtils {
 
     @Override
     public ProductPageBase clickGood(String title) {
-        if (swipe(someGoodTitle.format(title), 10)) {
-            someGoodTitle.format(title).click();
+        if (swipe(someProductTitle.format(title), 10)) {
+            someProductTitle.format(title).click();
         }
         return initPage(getDriver(), ProductPageBase.class);
     }

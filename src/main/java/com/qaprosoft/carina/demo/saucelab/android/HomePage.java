@@ -17,15 +17,15 @@ public class HomePage extends HomePageBase implements IMobileUtils {
     @ExtendedFindBy(accessibilityId = "App logo and name")
     private ExtendedWebElement logo;
     @ExtendedFindBy(accessibilityId = "View menu")
-    private ExtendedWebElement viewMenuBtn;
+    private ExtendedWebElement menuBtn;
     @ExtendedFindBy(accessibilityId = "Shows current sorting order and displays available sorting options")
     private ExtendedWebElement sortBtn;
     @ExtendedFindBy(accessibilityId = "View cart")
     private ExtendedWebElement cartBtn;
     @FindBy(xpath = "//android.widget.ImageView[@resource-id = \"com.saucelabs.mydemoapp.android:id/productIV\" and contains(@content-desc, \"%s\")]")
-    private ExtendedWebElement someGoodImage;
+    private ExtendedWebElement someProductImage;
     @FindBy(xpath = "(//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/titleTV\"])[1]")
-    private ExtendedWebElement firstSortedGood;
+    private ExtendedWebElement firstSortedProduct;
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -33,7 +33,7 @@ public class HomePage extends HomePageBase implements IMobileUtils {
 
     @Override
     public MainMenuBase clickMenuBtn() {
-        viewMenuBtn.click();
+        menuBtn.click();
         return initPage(getDriver(), MainMenuBase.class);
     }
 
@@ -45,7 +45,7 @@ public class HomePage extends HomePageBase implements IMobileUtils {
 
     @Override
     public boolean compareResultOfSort(String title) {
-        return title.equals(firstSortedGood.getText());
+        return title.equals(firstSortedProduct.getText());
     }
 
     @Override
@@ -55,8 +55,8 @@ public class HomePage extends HomePageBase implements IMobileUtils {
 
     @Override
     public ProductPageBase clickGood(String title) {
-        if (swipe(someGoodImage.format(title), 10)) {
-            someGoodImage.format(title).click();
+        if (swipe(someProductImage.format(title), 10)) {
+            someProductImage.format(title).click();
         }
         return initPage(getDriver(), ProductPageBase.class);
     }
