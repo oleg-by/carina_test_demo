@@ -22,18 +22,10 @@ public class MyDemoAppTests implements IAbstractTest, IMobileUtils {
     public void testEachProduct() {
         HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
         Assert.assertTrue(homePage.isLogoPresent(), "App Home page isn't opened.");
-        Set<String> titleList = new HashSet<>();
-        titleList.add("Sauce Lab Back Packs");
-        if (MobileUtils.isIOS()) {
-            titleList.add("Sauce Lab Bike Light");
-        }
-        titleList.add("Sauce Lab Bolt T-Shirt");
-        titleList.add("Sauce Lab Fleece T-Shirt");
-        titleList.add("Sauce Lab Onesie");
-        titleList.add("Test.");
-        for (String title : titleList) {
-            ProductPageBase productPage = homePage.clickGood(title);
-            Assert.assertTrue(productPage.isTitleOpened(title), title + " isn't opened.");
+        Set<String> productList = MobileUtils.getListOfProducts();
+        for (String product : productList) {
+            ProductPageBase productPage = homePage.clickGood(product);
+            Assert.assertTrue(productPage.isTitleOpened(product), product + " isn't opened.");
             Assert.assertTrue(productPage.scrollPageDown(), "Product page isn't scrolled.");
             productPage.backHome();
         }
@@ -64,17 +56,7 @@ public class MyDemoAppTests implements IAbstractTest, IMobileUtils {
     @TestLabel(name = "Sort products by name, by price", value = {"mobile", "regression"})
     public void testSortProducts() {
         SoftAssert softAssert = new SoftAssert();
-        SortedMap<String, Double> productMap = new TreeMap<>();
-        productMap.put("Sauce Lab Back Packs", 29.99);
-        productMap.put("Sauce Lab Bike Light", 9.99);
-        productMap.put("Sauce Lab Bolt T-Shirt", 15.99);
-        productMap.put("Sauce Lab Fleece T-Shirt", 49.99);
-        productMap.put("Sauce Lab Onesie", 7.99);
-        if (MobileUtils.isIOS()) {
-            productMap.put("Test.allTheThings() T-Shirt", 15.99);
-        } else {
-            productMap.put("Test.sllTheThings() T-Shirt", 15.99);
-        }
+        SortedMap<String, Double> productMap = MobileUtils.getMapOfProducts();
         Collection<Double> prices = productMap.values();
         Double minPrice = prices
                 .stream()
@@ -110,6 +92,29 @@ public class MyDemoAppTests implements IAbstractTest, IMobileUtils {
         softAssert.assertTrue(sortByPopUp.isTitlePresent(), "Sort Pop-up page isn't opened.");
         homePage = sortByPopUp.clickSortingMethodBtn(SortBy.PRICE_DESC);
         softAssert.assertEquals(homePage.getFirstSortedProduct(), maxPriceTitle, "Product sorting is wrong.");
+        softAssert.assertAll();
+    }
+
+    @Test()
+    @MethodOwner(owner = "oleg-by")
+    @TestLabel(name = "Check all fields in product details", value = {"mobile", "regression"})
+    public void testDetailsOfRandomProduct() {
+        SoftAssert softAssert = new SoftAssert();
+        HomePageBase homePage = initPage(getDriver(), HomePageBase.class);
+        softAssert.assertTrue(homePage.isLogoPresent(), "App Home page isn't opened.");
+        Set<String> productList = MobileUtils.getListOfProducts();
+        String anyProduct = productList.stream().findAny().get();
+        ProductPageBase productPage = homePage.clickGood(anyProduct);
+        softAssert.assertTrue(productPage.isTitleOpened(anyProduct), anyProduct + " isn't opened.");
+        softAssert.assertTrue(productPage.isImagePresent(), "There is no product image.");
+        softAssert.assertTrue(productPage.isPricePresent(), "There is no product price.");
+        softAssert.assertTrue((productPage.isStarSelectedPresent() || productPage.isStarUnSelectedPresent()), "There is no product rate stars.");
+        softAssert.assertTrue(productPage.isColorsPresent(), "There is no product colors buttons.");
+        softAssert.assertTrue(productPage.isMinusIconPresent(), "There is no minus button.");
+        softAssert.assertTrue(productPage.isPlusIconPresent(), "There is no plus button.");
+        softAssert.assertTrue(productPage.isAddToCartBtnPresent(), "There is no an add to cart button.");
+        softAssert.assertTrue(productPage.isHighlightsTitlePresent(), "There is no Product Highlights title.");
+        softAssert.assertTrue(productPage.scrollPageDown(), "There is no product details info in the end of page.");
         softAssert.assertAll();
     }
 

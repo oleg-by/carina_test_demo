@@ -18,6 +18,33 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
     @FindBy(xpath = "//android.widget.TextView[@resource-id = \"com.saucelabs.mydemoapp.android:id/productTV\" and contains(@text, \"%s\")]")
     private ExtendedWebElement productTitle;
 
+    @ExtendedFindBy(accessibilityId = "Displays selected product")
+    private ExtendedWebElement productImage;
+
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/priceTV")
+    private ExtendedWebElement productPrice;
+
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/start1IV")
+    private ExtendedWebElement rateStarSelected;
+
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/start5IV")
+    private ExtendedWebElement rateStarUnSelected;
+
+    @FindBy(xpath = "//android.widget.ImageView[contains(@content-desc, \"color\")]")
+    private ExtendedWebElement colorsBtn;
+
+    @ExtendedFindBy(accessibilityId = "Decrease item quantity")
+    private ExtendedWebElement minusIcon;
+
+    @ExtendedFindBy(accessibilityId = "Increase item quantity")
+    private ExtendedWebElement plusIcon;
+
+    @ExtendedFindBy(accessibilityId = "Tap to add product to cart")
+    private ExtendedWebElement addToCartBtn;
+
+    @FindBy(id = "com.saucelabs.mydemoapp.android:id/productHeightLightsTV")
+    private ExtendedWebElement productHighlightsTitle;
+
     @FindBy(xpath = "//android.widget.TextView[@resource-id=\"com.saucelabs.mydemoapp.android:id/descTV\"]")
     private ExtendedWebElement productHighlights;
 
@@ -31,6 +58,51 @@ public class ProductPage extends ProductPageBase implements IMobileUtils {
     @Override
     public boolean isTitleOpened(String title) {
         return productTitle.format(title).isElementPresent();
+    }
+
+    @Override
+    public boolean isImagePresent() {
+        return productImage.isElementPresent();
+    }
+
+    @Override
+    public boolean isPricePresent() {
+        return productPrice.isElementPresent();
+    }
+
+    @Override
+    public boolean isStarSelectedPresent() {
+        return rateStarSelected.isElementPresent();
+    }
+
+    @Override
+    public boolean isStarUnSelectedPresent() {
+        return rateStarUnSelected.isElementPresent();
+    }
+
+    @Override
+    public boolean isColorsPresent() {
+        return colorsBtn.isElementPresent();
+    }
+
+    @Override
+    public boolean isMinusIconPresent() {
+        return swipe(minusIcon,2);
+    }
+
+    @Override
+    public boolean isPlusIconPresent() {
+        return swipe(plusIcon,2);
+    }
+
+    @Override
+    public boolean isAddToCartBtnPresent() {
+        return swipe(addToCartBtn,2);
+    }
+
+    @Override
+    public boolean isHighlightsTitlePresent() {
+        return swipe(productHighlightsTitle,2);
     }
 
     @Override
